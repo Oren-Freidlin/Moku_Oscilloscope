@@ -28,7 +28,7 @@ class PID:
 # Fake oscilloscope setup
 # ======================
 fs = 39.063e6
-N = 1024
+N = 8192
 t = np.arange(N) / fs
 
 def fake_oscilloscope():
@@ -42,9 +42,9 @@ def fake_oscilloscope():
 # ======================
 # Controller parameters
 # ======================
-p_coef = -60
-i_coef = 120
-d_coef = 1
+p_coef = -10
+i_coef = -100
+d_coef = -1e-7
 target = 0.0
 
 pid = PID(p_coef, i_coef, d_coef)
@@ -85,18 +85,15 @@ while sim_time > 0:
     # --- Fake oscilloscope acquisition ---
     osc_volt = fake_oscilloscope()
 
-    # --- Signal processing ---
-    osc_singlederiv = np.gradient(osc_volt, t)
-    osc_doublederiv = np.gradient(osc_singlederiv, t)
-
+    # --- Signal processing: Filter before derivatives to avoid noise amplification ---
     filtered_osc = sci.sosfilt(sos, osc_volt)
-    filtered_deriv = sci.sosfilt(sos, osc_singlederiv)
-    filtered_double_deriv = sci.sosfilt(sos, osc_doublederiv)
+    filtered_deriv = sci.sosfilt(sos, filtered_osc)
+    filtered_double_deriv = sci.sosfilt(sos, filtered_deriv)
 
     feedback = (
         filtered_osc +
         filtered_deriv +
-        filtered_double_deriv
+        0*filtered_double_deriv
     )
 
     error = target - feedback
@@ -107,11 +104,11 @@ while sim_time > 0:
         pid_output[i] = pid.PID_response(e, dt)
 
     # --- Update plot ---
-    line_error.set_ydata(error)
-    line_pid.set_ydata(pid_output)
+    line_error.set_ydata(error)     # plots the latest error signal
+    line_pid.set_ydata(pid_output)  # plots the latest PID output signal
 
-    ax.relim()
-    ax.autoscale_view(scalex=False)
+    ax.relim()              # recompute the ax.dataLim
+    ax.autoscale_view(scalex=False)     # rescale y-axis
 
     plt.pause(0.01)   # GUI refresh + timing
     time.sleep(0.05)  # simulate acquisition latency
