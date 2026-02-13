@@ -1,0 +1,132 @@
+#-----------------------------------------------------------
+# Vivado v2022.2_AR000035739_AR000034905 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Wed Feb  4 20:18:15 2026
+# Process ID: 85687
+# Current directory: /workspace/c4640e72-2940-41dc-96bb-1692144b4941/output
+# Command line: vivado -log synthesis.log -nojournal -mode batch -source /deps/compile/scripts/tcl/synth.tcl -tclargs /deps/compile 30 xczu9eg-ffvc900-2-e mokupro /workspace/c4640e72-2940-41dc-96bb-1692144b4941/src /deps/checkpoints/ipcores/mokupro 8 4 8 4 4 4 4 4 null
+# Log file: /workspace/c4640e72-2940-41dc-96bb-1692144b4941/output/synthesis.log
+# Journal file: 
+# Running On: mcc-workers-74d68884bd-7779w, OS: Linux, CPU Frequency: 3393.622 MHz, CPU Physical cores: 28, Host memory: 118146 MB
+#-----------------------------------------------------------
+source /deps/compile/scripts/tcl/synth.tcl
+# set TOP_DIR [lindex $argv 0]
+# set HW_VER [lindex $argv 1]
+# set HG_PART [lindex $argv 2]
+# set HG_BOARD [lindex $argv 3]
+# set SRC_DIR [lindex $argv 4]
+# set IP_DCP_DIR [lindex $argv 5]
+# set NUM_INS [lindex $argv 6]
+# set NUM_OUTS [lindex $argv 7]
+# set NUM_SLOT_AIN [lindex $argv 8]
+# set NUM_SLOT_AOUT [lindex $argv 9]
+# set NUM_CBUFS [lindex $argv 10]
+# set IN_MODE [lindex $argv 11]
+# set OUT_MODE [lindex $argv 12]
+# set NUM_LOOPS [lindex $argv 13]
+# set VARIANT [lindex $argv 14]
+# set NUM_SLOT_AIN [expr $NUM_SLOT_AIN + $NUM_LOOPS]
+# set_part $HG_PART
+INFO: [Coretcl 2-1500] The part has been set to 'xczu9eg-ffvc900-2-e' for the current project only. Run set_part -help for more details. To evaluate different speed grades in the current design, use the set_speed_grade command, or use the open_checkpoint -part command to change the part used by an existing checkpoint design.
+# read_vhdl -vhdl2008 [glob $TOP_DIR/lib/hdl/*.vhd]
+# read_vhdl -vhdl2008 [glob $TOP_DIR/lib/src/Top.vhd]
+# read_vhdl -vhdl2008 [glob $TOP_DIR/lib/hdl/moku/*.vhd] -library Moku
+# set INCLUDE_ENTITY_DEFN 1
+# source $TOP_DIR/utilities/utilities.tcl
+## proc findFiles { basedir pattern } {
+## 
+##     # Fix the directory name, this ensures the directory name is in the
+##     # native format for the platform and contains a final directory seperator
+##     set basedir [string trimright [file join [file normalize $basedir] { }]]
+##     set fileList {}
+## 
+##     # Look in the current directory for matching files, -type {f r}
+##     # means ony readable normal files are looked at, -nocomplain stops
+##     # an error being thrown if the returned list is empty
+##     foreach fileName [glob -nocomplain -type {f r} -path $basedir $pattern] {
+##         lappend fileList $fileName
+##     }
+## 
+##     # Now look for any sub direcories in the current directory
+##     foreach dirName [glob -nocomplain -type {d  r} -path $basedir *] {
+##         # Recusively call the routine on the sub directory and append any
+##         # new files to the results
+##         set subDirList [findFiles $dirName $pattern]
+##         if { [llength $subDirList] > 0 } {
+##             foreach subDirFile $subDirList {
+##                 lappend fileList $subDirFile
+##             }
+##         }
+##     }
+##     return $fileList
+##  }
+# set VHDL_SRC [findFiles $SRC_DIR "*.vhd"]
+# if {[llength $VHDL_SRC] > 0} {
+#     # Prevent re-definition of CustomWrapper; 
+#     # without this check, Vivado or this suite of 
+#     # scripts will not report any errors and will 
+#     # still generate the deployable bitstream.
+#     # see https://liquidinstruments.atlassian.net/browse/SW-398
+#     foreach VHDL_FILE $VHDL_SRC {
+#         if {[catch {exec grep -qi "entity CustomWrapper is" $VHDL_FILE} result] == 0} {
+#             puts "Error: The entity 'CustomWrapper' is already defined in the library."
+#             exit 1
+#         }
+#     }
+#     read_vhdl -vhdl2008 $VHDL_SRC
+# }
+# set VERILOG_SRC [findFiles $SRC_DIR "*.v"]
+# if {[llength $VERILOG_SRC] > 0} {
+#     read_verilog $VERILOG_SRC
+#     set_property file_type {SystemVerilog} [get_files $VERILOG_SRC]
+#     foreach V_FILE $VERILOG_SRC {
+#         if {[catch {exec grep -qi "module CustomWrapper" $V_FILE} result] == 0} {
+#             set INCLUDE_ENTITY_DEFN 0
+#         }
+#     }
+# }
+# if {$INCLUDE_ENTITY_DEFN == 1} {
+#     read_vhdl -vhdl2008 [glob $TOP_DIR/lib/src/CustomWrapper.vhd]
+# }
+# set ip_dcps [glob -nocomplain $IP_DCP_DIR/*.dcp *.dcp]
+# puts $ip_dcps
+/deps/checkpoints/ipcores/mokupro/Counter_32.dcp /deps/checkpoints/ipcores/mokupro/AddSubtract_16.dcp /deps/checkpoints/ipcores/mokupro/CIC_Dec_3Ordx8.dcp /deps/checkpoints/ipcores/mokupro/FFT_1024.dcp /deps/checkpoints/ipcores/mokupro/SineGen_48.dcp /deps/checkpoints/ipcores/mokupro/FFT_65536.dcp /deps/checkpoints/ipcores/mokupro/FIR_Filter_7coef.dcp /deps/checkpoints/ipcores/mokupro/Cordic_Translate_16.dcp
+# foreach dcp $ip_dcps {
+# 	read_checkpoint $dcp
+# }
+Command: read_checkpoint /deps/checkpoints/ipcores/mokupro/Counter_32.dcp
+Command: read_checkpoint /deps/checkpoints/ipcores/mokupro/AddSubtract_16.dcp
+Command: read_checkpoint /deps/checkpoints/ipcores/mokupro/CIC_Dec_3Ordx8.dcp
+Command: read_checkpoint /deps/checkpoints/ipcores/mokupro/FFT_1024.dcp
+Command: read_checkpoint /deps/checkpoints/ipcores/mokupro/SineGen_48.dcp
+CRITICAL WARNING: [Vivado 12-5469] The design checkpoint file '/deps/checkpoints/ipcores/mokupro/SineGen_48.dcp' was generated for an IP by an out of context synthesis run and should not directly be used as a source in a Vivado flow. It is strongly recommended that that the original IP source file (.xci) be used.
+Command: read_checkpoint /deps/checkpoints/ipcores/mokupro/FFT_65536.dcp
+Command: read_checkpoint /deps/checkpoints/ipcores/mokupro/FIR_Filter_7coef.dcp
+Command: read_checkpoint /deps/checkpoints/ipcores/mokupro/Cordic_Translate_16.dcp
+# set_property top Instrument [current_fileset]
+# set_property top_lib xil_defaultlib [current_fileset]
+# set_property top_arch Custom [current_fileset]
+# set_property top_file Top [current_fileset]
+# set_property generic "HW_VER=$HW_VER NUM_INS=$NUM_INS NUM_OUTS=$NUM_OUTS NUM_CBUFS=$NUM_CBUFS NUM_SLOT_AOUT=$NUM_SLOT_AOUT NUM_SLOT_AIN=$NUM_SLOT_AIN IN_MODE=$IN_MODE OUT_MODE=$OUT_MODE NUM_LOOP=$NUM_LOOPS VARIANT=$VARIANT" [current_fileset]
+# synth_design -mode out_of_context -flatten_hierarchy rebuilt
+Command: synth_design -mode out_of_context -flatten_hierarchy rebuilt
+Starting synth_design
+Using part: xczu9eg-ffvc900-2-e
+Top: Instrument
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu9eg'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu9eg'
+INFO: [Common 17-1540] The version limit for your license is '2022.10' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for new releases.
+INFO: [Device 21-403] Loading part xczu9eg-ffvc900-2-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 85705
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/opt/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+ERROR: [Synth 8-2716] syntax error near '{' [/workspace/c4640e72-2940-41dc-96bb-1692144b4941/src/operations1.v:6]
+INFO: [Synth 8-9084] Verilog file '/workspace/c4640e72-2940-41dc-96bb-1692144b4941/src/operations1.v' ignored due to errors
+Failed to read verilog '/workspace/c4640e72-2940-41dc-96bb-1692144b4941/src/operations1.v'
+INFO: [Common 17-83] Releasing license: Synthesis
+9 Infos, 0 Warnings, 0 Critical Warnings and 2 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+INFO: [Common 17-206] Exiting Vivado at Wed Feb  4 20:18:30 2026...
