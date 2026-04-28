@@ -1,0 +1,44 @@
+#-----------------------------------------------------------
+# Vivado v2022.2_AR000035739_AR000034905 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Wed Feb  4 21:48:49 2026
+# Process ID: 147668
+# Current directory: /workspace/de483639-2aac-45e7-91eb-000acdad5050/output
+# Command line: vivado -log synthesis.log -nojournal -mode batch -notrace -source /deps/compile/scripts/tcl/synth.tcl -tclargs /deps/compile 30 xczu9eg-ffvc900-2-e mokupro /workspace/de483639-2aac-45e7-91eb-000acdad5050/src /workspace/de483639-2aac-45e7-91eb-000acdad5050/lib /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores InstrumentCI True VHD 4 4 0 4 4 9 4 4 0
+# Log file: /workspace/de483639-2aac-45e7-91eb-000acdad5050/output/synthesis.log
+# Journal file: 
+# Running On: mcc-workers-79684bb668-6f6hk, OS: Linux, CPU Frequency: 3393.622 MHz, CPU Physical cores: 28, Host memory: 118146 MB
+#-----------------------------------------------------------
+source /deps/compile/scripts/tcl/synth.tcl -notrace
+INFO: [Coretcl 2-1500] The part has been set to 'xczu9eg-ffvc900-2-e' for the current project only. Run set_part -help for more details. To evaluate different speed grades in the current design, use the set_speed_grade command, or use the open_checkpoint -part command to change the part used by an existing checkpoint design.
+/workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/AddSubtract_16.dcp /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/CIC_Dec_3Ordx8.dcp /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/Cordic_Translate_16.dcp /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/Counter_32.dcp /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/FFT_1024.dcp /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/FFT_65536.dcp /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/FIR_Filter_7coef.dcp /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/SineGen_48.dcp
+Command: read_checkpoint /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/AddSubtract_16.dcp
+Command: read_checkpoint /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/CIC_Dec_3Ordx8.dcp
+Command: read_checkpoint /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/Cordic_Translate_16.dcp
+Command: read_checkpoint /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/Counter_32.dcp
+Command: read_checkpoint /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/FFT_1024.dcp
+Command: read_checkpoint /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/FFT_65536.dcp
+Command: read_checkpoint /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/FIR_Filter_7coef.dcp
+Command: read_checkpoint /workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/SineGen_48.dcp
+CRITICAL WARNING: [Vivado 12-5469] The design checkpoint file '/workspace/de483639-2aac-45e7-91eb-000acdad5050/ipcores/SineGen_48.dcp' was generated for an IP by an out of context synthesis run and should not directly be used as a source in a Vivado flow. It is strongly recommended that that the original IP source file (.xci) be used.
+Command: synth_design -mode out_of_context -flatten_hierarchy rebuilt
+Starting synth_design
+Using part: xczu9eg-ffvc900-2-e
+Top: Instrument
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu9eg'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu9eg'
+INFO: [Common 17-1540] The version limit for your license is '2022.10' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for new releases.
+INFO: [Device 21-403] Loading part xczu9eg-ffvc900-2-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 147685
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/opt/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+ERROR: [Synth 8-2716] syntax error near ';' [/workspace/de483639-2aac-45e7-91eb-000acdad5050/src/operations1.v:2]
+INFO: [Synth 8-9084] Verilog file '/workspace/de483639-2aac-45e7-91eb-000acdad5050/src/operations1.v' ignored due to errors
+Failed to read verilog '/workspace/de483639-2aac-45e7-91eb-000acdad5050/src/operations1.v'
+INFO: [Common 17-83] Releasing license: Synthesis
+10 Infos, 0 Warnings, 1 Critical Warnings and 2 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+INFO: [Common 17-206] Exiting Vivado at Wed Feb  4 21:49:08 2026...
